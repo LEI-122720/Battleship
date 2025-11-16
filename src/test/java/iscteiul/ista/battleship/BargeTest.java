@@ -1,42 +1,69 @@
 package iscteiul.ista.battleship;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Testes para Barge (barco de tamanho 1)")
 class BargeTest {
 
-    @Test
-    @DisplayName("Barge tem tamanho 1 e começa a flutuar")
-    void bargeSizeAndInitialState() {
-        Position p = new Position(3, 3);
-        Barge b = new Barge(Compass.EAST, p);
+    private Position start;
+    private Barge barge;
 
-        assertEquals(1, b.getSize());
-        assertEquals(1, b.getPositions().size());
-        assertTrue(b.stillFloating());
+    @BeforeEach
+    void setUp() {
+        start = new Position(3, 3);
+        barge = new Barge(Compass.EAST, start);
     }
 
-    @Test
-    @DisplayName("Barge ocupa apenas a posição inicial")
-    void bargeOccupiesOnlyStartPosition() {
-        Position p = new Position(3, 3);
-        Barge b = new Barge(Compass.EAST, p);
+    @Nested
+    @DisplayName("Estado inicial da Barge")
+    class InitialStateTests {
 
-        assertTrue(b.occupies(p));
-        assertFalse(b.occupies(new Position(3, 4)));
-        assertFalse(b.occupies(new Position(4, 3)));
+        @Test
+        @DisplayName("Barge tem tamanho 1 e começa a flutuar")
+        void bargeSizeAndInitialState() {
+            assertEquals(1, barge.getSize());
+            assertEquals(1, barge.getPositions().size());
+            assertTrue(barge.stillFloating());
+        }
     }
 
-    @Test
-    @DisplayName("Barge afunda com um único tiro certeiro")
-    void bargeSinksAfterOneHit() {
-        Position p = new Position(3, 3);
-        Barge b = new Barge(Compass.EAST, p);
+    @Nested
+    @DisplayName("Ocupação de posições")
+    class OccupationTests {
 
-        assertTrue(b.stillFloating());
-        b.shoot(p);  // tiro na posição onde está
-        assertFalse(b.stillFloating());
+        @Test
+        @DisplayName("Barge ocupa apenas a posição inicial")
+        void bargeOccupiesOnlyStartPosition() {
+            assertTrue(barge.occupies(start));
+            assertFalse(barge.occupies(new Position(3, 4)));
+            assertFalse(barge.occupies(new Position(4, 3)));
+        }
+    }
+
+    @Nested
+    @DisplayName("Tiros na Barge")
+    class ShootingTests {
+
+        @Test
+        @DisplayName("Barge afunda com um único tiro certeiro")
+        void bargeSinksAfterOneHit() {
+            assertTrue(barge.stillFloating());
+            barge.shoot(start);  // tiro na posição onde está
+            assertFalse(barge.stillFloating());
+        }
+
+        @Test
+        @DisplayName("Tiro numa posição errada não afunda a Barge")
+        void missDoesNotSinkBarge() {
+            Position miss = new Position(3, 4);
+
+            barge.shoot(miss);
+            assertTrue(barge.stillFloating(), "Um tiro falhado não deve afundar a barca");
+        }
     }
 }
