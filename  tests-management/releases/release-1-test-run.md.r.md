@@ -15,7 +15,7 @@ Executar testes unitários e validar cobertura global da aplicação Battleship.
 - ✔️ Atualizar relatórios na diretoria /reports – CL-004
 
 ### Operações de Gestão de Testes
-- ✔️ Criar e atualizar Test Suites no TMS – CL-005
+- ✔️ Criar e atualizar Test Suites no TMS – CL-005 
 - ✔️ Organizar casos de teste na diretoria test-cases – CL-006
 - ✔️ Ligar ficheiros de teste a código com referências TMS (quando aplicável) – CL-007
 
@@ -62,6 +62,14 @@ A aplicação apresenta uma cobertura global elevada e estável, cumprindo os ob
 - Relatório detalhado: [unit-tests-LEI122720.html](../../reports/tests/unit-tests-LEI122720.html)
 
 Responsável pela execução: @LEI122720
+
+## Execução @LEI122684
+
+- Estado dos testes unitários: **passed** (58/58 testes)
+- Nenhum teste **failed**
+- Relatório detalhado: [Test Results - LEI122720.html](../../reports/tests/Test Results - LEI122720.html)
+
+Responsável pela execução: @LEI122684
 
 ---
 ### Tags
