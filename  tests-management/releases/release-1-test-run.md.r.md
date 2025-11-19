@@ -55,6 +55,14 @@ Todos os testes unitários principais foram executados com sucesso.
 A aplicação apresenta uma cobertura global elevada e estável, cumprindo os objetivos da entrega.
 
 ---
+## Execução @LEI122720
 
+- Estado dos testes unitários: **passed** (98/98 testes)
+- Nenhum teste **failed**
+- Relatório detalhado: [unit-tests-LEI122720.html](../../reports/tests/unit-tests-LEI122720.html)
+
+Responsável pela execução: @LEI122720
+
+---
 ### Tags
 #test-run #coverage #release #battleship #unit-tests
